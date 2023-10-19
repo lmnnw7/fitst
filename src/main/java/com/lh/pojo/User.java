@@ -7,7 +7,6 @@ public class User {
     private Integer id;
     private String username;
     private String password;
-
-    public User(String john, String password123) {
-    }
+    private String email;
+    private Integer role;
 }

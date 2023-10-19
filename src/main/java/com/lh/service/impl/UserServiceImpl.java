@@ -16,4 +16,8 @@ public class UserServiceImpl implements UserService {
     public User Log(User user) {
         return userMapper.Log(user);
     }
+    @Override
+    public User Sign(User user){
+        return userMapper.Sign(user);
+    }
 }
