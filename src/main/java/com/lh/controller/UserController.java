@@ -3,57 +3,77 @@ package com.lh.controller;
 import com.lh.pojo.User;
 import com.lh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.async.DeferredResult;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
-@Controller
-@RequestMapping("llhh")
+
+@CrossOrigin(origins = "*")
+@RestController
+@RequestMapping("/api")
 public class UserController {
     @Autowired(required = false)
     private UserService userService;
-    @RequestMapping("index")
-    public String toindex(){
-        return "pages/index";
+
+    @Autowired(required = false)
+    private UserDetailsService userDetailsService;
+
+    @GetMapping("/me")
+    public ResponseEntity<?> getCurrentUser(@AuthenticationPrincipal UserDetails userDetails) {
+
+        // 获取当前认证的用户信息
+//        User user=userService.findUserByUsername(userDetails.getUsername());
+        // 这里假设 UserDetails 对象代表了经过身份验证的用户信息
+        // 你可以根据实际情况从数据库或其他存储中获取用户信息
+
+        if (userDetails != null) {
+            // 返回用户信息
+            User user = userService.findUserByUsername(userDetails.getUsername());
+            return ResponseEntity.ok(user);
+        } else {
+            // 未认证的情况下返回 401 未授权状态码
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
-    @RequestMapping("login")
-    public String tolog(){
-        return "pages/login";
-    }
-    @RequestMapping("signup")
-    public String tosign(){
-        return "pages/signup";
-    }
+
+
     //用户登录
-    @RequestMapping("/log")
-    public String Log(User user, Model model){
-        try{
-            User u= userService.Log(user);
-//            String name= u.getUsername();
-//            System.out.println(name);
-//            model.addAttribute("username",name);
-            return "pages/index";
+    @RequestMapping("/login")
+    public ResponseEntity<User> Log( @RequestBody User user){
+        User u=userService.Log(user);
+        if(u!=null){
+            return ResponseEntity.ok(u);
         }
-        catch(Exception e){
-            return "public/login_fall";
-        }
-//        User u=userService.Log(user);
-//        if(u!=null){return "sese/index";}
-//        else return "public/login_false";
+        else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
-    @RequestMapping("/sign")
-    public String Sign(User user){
-        try{
-            User u= userService.Sign(user);
-//            String name= u.getUsername();
-//            System.out.println(name);
-//            model.addAttribute("username",name);
-            return "pages/login";
+
+    //用户注册
+    @RequestMapping("/register")
+    public ResponseEntity<String> register(@RequestBody User user) {
+        if (userService.findUserByUsername(user.getUsername())==null){
+            userService.Register(user);
+            return ResponseEntity.ok("Registration successful");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username already in use");
         }
-        catch(Exception e){
-            return "public/login_fall";
-        }
+    }
+
+    //用户登出
+    @RequestMapping("/logout")
+    public ResponseEntity<String> logout(SessionStatus sessionStatus, Model model) {
+        System.out.println("111");
+        DeferredResult<String> deferredResult = new DeferredResult<>();
+        sessionStatus.setComplete();
+        deferredResult.setResult("用户注销成功");
+
+        return ResponseEntity.ok("888");
     }
 }
