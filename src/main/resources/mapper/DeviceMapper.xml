@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lh.mapper.DeviceMapper">
+    <resultMap id="findAllDeviceResult" type="com.lh.pojo.Device">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="price" column="price"></result>
+        <result property="description" column="description"></result>
+        <result property="image_path" column="image_path"></result>
+        <result property="location" column="location"></result>
+        <result property="available" column="available"></result>
+        <result property="create_date" column="create_date"></result>
+        <association property="user_id" javaType="com.lh.pojo.User">
+            <id property="id" column="user_id"></id>
+            <result property="username" column="username"></result>
+            <result property="password" column="password"></result>
+            <result property="email" column="email"></result>
+            <result property="role" column="role"></result>
+        </association>
+    </resultMap>
+    <select id="findAllDevice" resultMap="findAllDeviceResult">
+        select *
+        from t_device d,t_user u
+        where d.user_id = u.id
+    </select>
+    <select id="findDeviceByID" resultMap="findAllDeviceResult">
+        select *
+        from t_device d,t_user u
+        where d.user_id = u.id and id=#{id}
+    </select>
+    <delete id="deleteDeviceByID" parameterType="integer">
+        delete
+        from t_device
+        where id=#{id}
+    </delete>
+    <update id="updateDevice" parameterType="com.lh.pojo.Device">
+        update t_device
+        set
+            name=#{name},
+            price=#{price},
+            location=#{location},
+            description=#{description},
+            image_path=#{image_path},
+            available=#{available}
+        where
+            id = #{id}
+    </update>
+    <select id="findDeviceByStr" parameterType="java.lang.String" resultType="com.lh.pojo.Device">
+        select *
+        from t_device
+        where 1=1
+        <if test="searchStr!=null and searchStr!=''">
+            and name like CONCAT('%',#{searchParam},'%')
+            or location like CONCAT('%',#{searchParam},'%')
+            or price like CONCAT('%',#{searchParam},'%')
+        </if>
+    </select>
+</mapper>
