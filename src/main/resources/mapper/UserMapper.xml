@@ -10,7 +10,7 @@
     </select>
     <insert id="Register" parameterType="com.lh.pojo.User">
         insert into t_user(username,password,email,role)
-        values(#{username},#{password},#{email},#{role})
+        values(#{username},#{password},#{email},'普通用户')
     </insert>
     <select id="findAllUsers" resultType="com.lh.pojo.User">
         select *
@@ -21,4 +21,34 @@
         from t_user
         where username=#{username}
     </select>
+    <select id="findUserByID"  parameterType="Integer" resultType="com.lh.pojo.User">
+        select *
+        from t_user
+        where id = #{id}
+    </select>
+    <update id="updateUser" parameterType="com.lh.pojo.User">
+        update t_user
+        set
+            username = #{username},
+            password = #{password},
+            email = #{email}
+        where
+            id = #{id}
+    </update>
+    <delete id="deleteUserByID" parameterType="integer">
+        delete
+        from t_user
+        where id=#{id}
+    </delete>
+    <select id="findUserByStr" parameterType="java.lang.String" resultType="com.lh.pojo.User">
+        select *
+        from t_user
+        where role=1
+        <if test="searchStr!=null and searchStr!=''">
+            and username like CONCAT('%',#{searchParam},'%')
+            or password like CONCAT('%',#{searchParam},'%')
+            or email like CONCAT('%',#{searchParam},'%')
+        </if>
+    </select>
+
 </mapper>

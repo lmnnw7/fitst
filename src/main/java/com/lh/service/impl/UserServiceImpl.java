@@ -5,7 +5,6 @@ import com.lh.pojo.User;
 import com.lh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User Register(User user) {
+    public int Register(User user) {
         return userMapper.Register(user);
     }
 
@@ -38,10 +37,24 @@ public class UserServiceImpl implements UserService {
         return u;
     }
 
-//    public User getCurrentUser() {
-//        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-//        User currentUser = userMapper.findUserByUsername(currentUsername);
-//        return currentUser;
-//    }
+    @Override
+    public User findUserByID(Integer id) {
+        return userMapper.findUserByID(id);
+    }
+
+    @Override
+    public int deleteUserByID(Integer id) {
+        return userMapper.deleteUserByID(id);
+    }
+
+    @Override
+    public int updateUser(User user) {
+        return userMapper.updateUser(user);
+    }
+
+    @Override
+    public List<User> findUserByStr(String searchStr) {
+        return userMapper.findAllUsers();
+    }
 
 }
