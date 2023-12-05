@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findUserByStr(String searchStr) {
-        return userMapper.findAllUsers();
+        return userMapper.findUserByStr(searchStr);
     }
 
 }
