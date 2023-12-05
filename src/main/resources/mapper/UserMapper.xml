@@ -45,9 +45,9 @@
         from t_user
         where role=1
         <if test="searchStr!=null and searchStr!=''">
-            and username like CONCAT('%',#{searchParam},'%')
+            and (username like CONCAT('%',#{searchParam},'%')
             or password like CONCAT('%',#{searchParam},'%')
-            or email like CONCAT('%',#{searchParam},'%')
+            or email like CONCAT('%',#{searchParam},'%'))
         </if>
     </select>
 

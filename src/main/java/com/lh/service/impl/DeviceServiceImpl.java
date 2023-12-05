@@ -1,7 +1,6 @@
 package com.lh.service.impl;
 
 import com.lh.mapper.DeviceMapper;
-import com.lh.mapper.UserMapper;
 import com.lh.pojo.Device;
 import com.lh.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,11 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public Device findDeviceByID(Integer id) {
         return deviceMapper.findDeviceByID(id);
+    }
+
+    @Override
+    public List<Device> findDeviceByUID(Integer id) {
+        return deviceMapper.findDeviceByUID(id);
     }
 
     @Override
