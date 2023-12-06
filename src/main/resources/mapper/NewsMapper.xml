@@ -12,6 +12,10 @@
         from t_News
         where id = #{id}
     </select>
+    <insert id="insertNews" parameterType="com.lh.pojo.News">
+        insert into t_news(title,author,date,content,image_path)
+        values(#{title},#{author},#{date},#{content},#{image_path})
+    </insert>
     <update id="updateNews" parameterType="com.lh.pojo.News">
         update t_News
         set

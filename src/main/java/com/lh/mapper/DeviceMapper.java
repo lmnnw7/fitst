@@ -11,4 +11,5 @@ public interface DeviceMapper {
     int deleteDeviceByID(Integer id);
     int updateDevice(Device device);
     List<Device> findDeviceByStr(String searchStr);
+    int insertDevice(Device device);
 }

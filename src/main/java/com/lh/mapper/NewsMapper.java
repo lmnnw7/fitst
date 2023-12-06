@@ -1,6 +1,7 @@
 package com.lh.mapper;
 
 import com.lh.pojo.News;
+import com.lh.pojo.User;
 
 import java.util.List;
 
@@ -10,4 +11,5 @@ public interface NewsMapper {
     int updateNews(News news);
     List<News> findNewsByStr(String searchStr);
     List<News> findAllNews();
+    int insertNews(News news);
 }

@@ -30,6 +30,10 @@
         from t_device d,t_user u
         where d.user_id = u.id and id=#{id}
     </select>
+    <insert id="insertDevice" parameterType="com.lh.pojo.Device">
+        insert into t_device(user_id,name,price,description,location,image_path,available,create_date)
+        values(#{user_id},#{name},#{price},#{description},#{location},#{available},#{create_date})
+    </insert>
     <select id="findDeviceByUID" resultMap="findAllDeviceResult">
         select *
         from t_device d,t_user u

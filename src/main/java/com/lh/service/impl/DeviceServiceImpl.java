@@ -46,4 +46,9 @@ public class DeviceServiceImpl implements DeviceService {
     public List<Device> findAllDevice() {
         return deviceMapper.findAllDevice();
     }
+
+    @Override
+    public int insertDevice(Device device) {
+        return deviceMapper.insertDevice(device);
+    }
 }

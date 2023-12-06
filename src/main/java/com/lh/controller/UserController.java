@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.async.DeferredResult;
 
-
+import java.util.List;
 
 
 @RequestMapping("/api")
@@ -32,7 +33,7 @@ public class UserController {
 
     //用户登录
     @RequestMapping("/login")
-    public ResponseEntity<User> Log(@RequestBody User user){
+    public ResponseEntity<User> log(@RequestBody User user){
         User u=userService.Log(user);
         if(u!=null){
             return ResponseEntity.ok(u);
@@ -63,4 +64,52 @@ public class UserController {
 
         return ResponseEntity.ok("888");
     }
+
+    //查找所有用户
+    @RequestMapping("/findAllUser")
+    public ResponseEntity<?> findAllUser(){
+        List<User> userList=userService.findAllUsers();
+        return ResponseEntity.ok(userList);
+    }
+
+    //根据id删除用户
+    @RequestMapping("/deleteUserByID")
+    public ResponseEntity<?> deleteUserByID(@RequestParam Integer id){
+        int i=userService.deleteUserByID(id);
+        if(i>0){
+            return ResponseEntity.ok(i);
+        }
+        else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+
+    //更新用户
+    @RequestMapping("/updateUser")
+    public ResponseEntity<?> updateUser(@RequestBody User user){
+        if(userService.findUserByUsername(user.getUsername())==null){
+            int i=userService.updateUser(user);
+            return ResponseEntity.ok(i);
+        }
+        else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+
+    //查询用户，模糊查询
+    @RequestMapping("/findUserByStr")
+    public ResponseEntity<?> findUserByStr(@RequestParam(value="searchStr") String searchStr,Model model){
+        List<User> userList=userService.findUserByStr(searchStr);
+        return ResponseEntity.ok(userList);
+    }
+
+    //添加用户
+    @RequestMapping("/addUser")
+    public ResponseEntity<?> addUser(@RequestBody User user) {
+        if (userService.findUserByUsername(user.getUsername())==null){
+            int i=userService.insertUser(user);
+            return ResponseEntity.ok(i);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+
+
+
 }

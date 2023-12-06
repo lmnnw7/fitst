@@ -13,4 +13,5 @@ public interface UserMapper {
     int deleteUserByID(Integer id);
     int updateUser(User user);
     List<User> findUserByStr(String searchStr);
+    int insertUser(User user);
 }

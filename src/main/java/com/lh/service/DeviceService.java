@@ -11,4 +11,5 @@ public interface DeviceService {
     int updateDevice(Device device);
     List<Device> findDeviceByStr(String searchStr);
     List<Device> findAllDevice();
+    int insertDevice(Device device);
 }

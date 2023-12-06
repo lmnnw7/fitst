@@ -12,6 +12,10 @@
         insert into t_user(username,password,email,role)
         values(#{username},#{password},#{email},'普通用户')
     </insert>
+    <insert id="insertUser" parameterType="com.lh.pojo.User">
+        insert into t_user(username,password,email,role)
+        values(#{username},#{password},#{email},#{role})
+    </insert>
     <select id="findAllUsers" resultType="com.lh.pojo.User">
         select *
         from t_user

@@ -57,4 +57,9 @@ public class UserServiceImpl implements UserService {
         return userMapper.findUserByStr(searchStr);
     }
 
+    @Override
+    public int insertUser(User user) {
+        return userMapper.insertUser(user);
+    }
+
 }

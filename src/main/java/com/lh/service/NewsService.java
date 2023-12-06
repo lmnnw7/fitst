@@ -10,4 +10,5 @@ public interface NewsService {
     int updateNews(News news);
     List<News> findNewsByStr(String searchStr);
     List<News> findAllNews();
+    int insertNews(News news);
 }
