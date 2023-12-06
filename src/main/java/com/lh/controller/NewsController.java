@@ -19,7 +19,7 @@ import java.util.List;
 public class NewsController {
 
     @Autowired(required = false)
-    NewsService newsService;
+    private NewsService newsService;
 
     //查找所有新闻
     @RequestMapping("/findAllNews")
@@ -46,7 +46,7 @@ public class NewsController {
                 String fileName = file.getOriginalFilename();
                 String filePath = "D:/ideawork/Plane/src/main/webapp/img/" + fileName;
                 file.transferTo(new File(filePath));
-                news.setImage_path("src/img/"+fileName);
+                news.setImage_path("src/img/news/"+fileName);
             }
             int i=newsService.updateNews(news);
             return ResponseEntity.ok(i);
@@ -70,7 +70,7 @@ public class NewsController {
                 String fileName = file.getOriginalFilename();
                 String filePath = "D:/ideawork/Plane/src/main/webapp/img/" + fileName;
                 file.transferTo(new File(filePath));
-                news.setImage_path("src/img/"+fileName);
+                news.setImage_path("src/img/news/"+fileName);
             }
             int i=newsService.insertNews(news);
             return ResponseEntity.ok(i);

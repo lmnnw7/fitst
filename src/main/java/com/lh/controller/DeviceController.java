@@ -29,8 +29,8 @@ public class DeviceController {
     //通过用户id查找设备
     @RequestMapping("/findDeviceByUID")
     public ResponseEntity<?> findDeviceByUID(@RequestParam Integer id) {
-        List<Device> Dlist=deviceService.findDeviceByUID(id);
-        return ResponseEntity.ok(Dlist);
+        List<Device> deviceList=deviceService.findDeviceByUID(id);
+        return ResponseEntity.ok(deviceList);
     }
 
     //添加设备
@@ -41,7 +41,7 @@ public class DeviceController {
                 String fileName = file.getOriginalFilename();
                 String filePath = "D:/ideawork/Plane/src/main/webapp/img/" + fileName;
                 file.transferTo(new File(filePath));
-                device.setImage_path("");
+                device.setImage_path("src/img/device/"+fileName);
             }
             int i=deviceService.insertDevice(device);
             return ResponseEntity.ok(i);
@@ -58,7 +58,7 @@ public class DeviceController {
                 String fileName = file.getOriginalFilename();
                 String filePath = "D:/ideawork/Plane/src/main/webapp/img/" + fileName;
                 file.transferTo(new File(filePath));
-                device.setImage_path("");
+                device.setImage_path("src/img/device/"+fileName);
             }
             int i=deviceService.updateDevice(device);
             return ResponseEntity.ok(i);
