@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lh.mapper.NewsMapper">
+    <select id="findAllNews" resultType="com.lh.pojo.News">
+        select *
+        from t_News
+    </select>
+    <select id="findNewsByID"  parameterType="Integer" resultType="com.lh.pojo.News">
+        select *
+        from t_News
+        where id = #{id}
+    </select>
+    <update id="updateNews" parameterType="com.lh.pojo.News">
+        update t_News
+        set
+            content=#{content},
+            title=#{title},
+            date=#{date},
+            author=#{author},
+            image_path=#{image_path}
+        where
+            id = #{id}
+    </update>
+    <delete id="deleteNewsByID" parameterType="integer">
+        delete
+        from t_News
+        where id=#{id}
+    </delete>
+    <select id="findNewsByStr" parameterType="java.lang.String" resultType="com.lh.pojo.News">
+        select *
+        from t_News
+        where 1=1
+        <if test="searchStr!=null and searchStr!=''">
+            and (title like CONCAT('%',#{searchParam},'%')
+            or author like CONCAT('%',#{searchParam},'%')
+            or date like CONCAT('%',#{searchParam},'%'))
+        </if>
+    </select>
+</mapper>

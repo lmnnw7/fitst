@@ -22,7 +22,7 @@ public class UserController {
     @GetMapping("/me")
     public ResponseEntity<?> getCurrentUser(@AuthenticationPrincipal User user) {
         if (user != null) {
-            User user1 = userService.findUserByUsername("123");
+            User user1 = userService.findUserByUsername(user.getUsername());
             return ResponseEntity.ok(user1);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
