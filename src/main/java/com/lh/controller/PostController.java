@@ -21,7 +21,7 @@ public class PostController {
     @Autowired(required = false)
     private PostService postService;
 
-
+    //通过ID查找贴子
     @RequestMapping("/findPostByID")
     public ResponseEntity<?> findNewsByID(@RequestParam Integer id){
         Post post=postService.findPostByID(id);

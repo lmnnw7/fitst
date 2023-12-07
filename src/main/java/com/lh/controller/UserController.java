@@ -1,6 +1,5 @@
 package com.lh.controller;
 
-import com.lh.pojo.News;
 import com.lh.pojo.User;
 import com.lh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +66,7 @@ public class UserController {
     }
 
 
+    //通过ID查找用户
     @RequestMapping("/findUserByID")
     public ResponseEntity<?> findNewsByID(@RequestParam Integer id){
         User user=userService.findUserByID(id);
@@ -83,7 +83,7 @@ public class UserController {
         return ResponseEntity.ok(userList);
     }
 
-    //根据id删除用户
+    //根据ID删除用户
     @RequestMapping("/deleteUserByID")
     public ResponseEntity<?> deleteUserByID(@RequestParam Integer id){
         int i=userService.deleteUserByID(id);

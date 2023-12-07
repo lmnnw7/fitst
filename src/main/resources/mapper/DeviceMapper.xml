@@ -5,7 +5,7 @@
 <mapper namespace="com.lh.mapper.DeviceMapper">
     <resultMap id="findAllDeviceResult" type="com.lh.pojo.Device">
         <id property="id" column="id"></id>
-        <result property="name" column="name"></result>
+        <result property="name" column="name"/>
         <result property="price" column="price"></result>
         <result property="description" column="description"></result>
         <result property="image_path" column="image_path"></result>

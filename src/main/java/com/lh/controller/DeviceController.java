@@ -19,7 +19,7 @@ public class DeviceController {
     @Autowired(required = false)
     private DeviceService deviceService;
 
-
+    //通过ID查找设备
     @RequestMapping("/findDeviceByID")
     public ResponseEntity<?> findDeviceByID(@RequestParam Integer id){
         Device device=deviceService.findDeviceByID(id);
@@ -36,7 +36,7 @@ public class DeviceController {
         return ResponseEntity.ok(Dlist);
     }
 
-    //通过用户id查找设备
+    //通过用户ID查找设备
     @RequestMapping("/findDeviceByUID")
     public ResponseEntity<?> findDeviceByUID(@RequestParam Integer id) {
         List<Device> deviceList=deviceService.findDeviceByUID(id);

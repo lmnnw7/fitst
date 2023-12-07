@@ -1,6 +1,5 @@
 package com.lh.controller;
 
-import com.lh.pojo.Device;
 import com.lh.pojo.News;
 import com.lh.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class NewsController {
     @Autowired(required = false)
     private NewsService newsService;
 
-
+    //通过ID查找新闻
     @RequestMapping("/findNewsByID")
     public ResponseEntity<?> findNewsByID(@RequestParam Integer id){
         News news=newsService.findNewsByID(id);
