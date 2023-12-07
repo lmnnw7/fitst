@@ -13,8 +13,8 @@
         where id = #{id}
     </select>
     <insert id="insertNews" parameterType="com.lh.pojo.News">
-        insert into t_news(title,author,date,content,image_path)
-        values(#{title},#{author},#{date},#{content},#{image_path})
+        insert into t_news(title,author,create_date,content,image_path)
+        values(#{title},#{author},#{create_date},#{content},#{image_path})
     </insert>
     <update id="updateNews" parameterType="com.lh.pojo.News">
         update t_news
@@ -39,7 +39,7 @@
         <if test="searchStr!=null and searchStr!=''">
             and (title like CONCAT('%',#{searchParam},'%')
             or author like CONCAT('%',#{searchParam},'%')
-            or date like CONCAT('%',#{searchParam},'%'))
+            or create_date like CONCAT('%',#{searchParam},'%'))
         </if>
     </select>
 </mapper>
