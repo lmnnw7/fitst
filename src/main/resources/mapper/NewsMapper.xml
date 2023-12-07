@@ -5,11 +5,11 @@
 <mapper namespace="com.lh.mapper.NewsMapper">
     <select id="findAllNews" resultType="com.lh.pojo.News">
         select *
-        from t_News
+        from t_news
     </select>
     <select id="findNewsByID"  parameterType="Integer" resultType="com.lh.pojo.News">
         select *
-        from t_News
+        from t_news
         where id = #{id}
     </select>
     <insert id="insertNews" parameterType="com.lh.pojo.News">
@@ -17,11 +17,11 @@
         values(#{title},#{author},#{date},#{content},#{image_path})
     </insert>
     <update id="updateNews" parameterType="com.lh.pojo.News">
-        update t_News
+        update t_news
         set
             content=#{content},
             title=#{title},
-            date=#{date},
+            create_date=#{create_date},
             author=#{author},
             image_path=#{image_path}
         where
@@ -29,12 +29,12 @@
     </update>
     <delete id="deleteNewsByID" parameterType="integer">
         delete
-        from t_News
+        from t_news
         where id=#{id}
     </delete>
     <select id="findNewsByStr" parameterType="java.lang.String" resultType="com.lh.pojo.News">
         select *
-        from t_News
+        from t_news
         where 1=1
         <if test="searchStr!=null and searchStr!=''">
             and (title like CONCAT('%',#{searchParam},'%')

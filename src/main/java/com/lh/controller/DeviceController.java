@@ -86,28 +86,4 @@ public class DeviceController {
 
 
 
-
-//    @RequestMapping("/upload")
-//    public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file){
-//        try{
-//            if (!file.isEmpty()) {
-//                String fileName = file.getOriginalFilename();
-//                String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
-//                file.transferTo(new File(filePath));
-//                System.out.println("111");
-//            }
-//            return ResponseEntity.ok("888");
-//        }catch (Exception exception){
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-//        }
-//    }
-//
-//    @GetMapping("/getImage")
-//    public ResponseEntity<Resource> getImage(){
-////        Device device1=new Device();
-////        Resource resource = new ClassPathResource(device.getImage_path());
-//        Resource resource = new ClassPathResource("static/img/pla106_01_pic.jpg");
-//        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(resource);
-//    }
-
 }
