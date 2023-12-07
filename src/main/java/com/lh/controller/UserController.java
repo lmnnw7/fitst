@@ -1,5 +1,6 @@
 package com.lh.controller;
 
+import com.lh.pojo.News;
 import com.lh.pojo.User;
 import com.lh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,16 @@ public class UserController {
         deferredResult.setResult("用户注销成功");
 
         return ResponseEntity.ok("888");
+    }
+
+
+    @RequestMapping("/findUserByID")
+    public ResponseEntity<?> findNewsByID(@RequestParam Integer id){
+        User user=userService.findUserByID(id);
+        if(user!=null){
+            return ResponseEntity.ok(user);
+        }
+        else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
     //查找所有用户

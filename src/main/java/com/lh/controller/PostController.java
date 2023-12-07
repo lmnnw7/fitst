@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
 
 @RequestMapping("/api")
@@ -18,6 +20,16 @@ public class PostController {
 
     @Autowired(required = false)
     private PostService postService;
+
+
+    @RequestMapping("/findPostByID")
+    public ResponseEntity<?> findNewsByID(@RequestParam Integer id){
+        Post post=postService.findPostByID(id);
+        if(post!=null){
+            return ResponseEntity.ok(post);
+        }
+        else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
 
     //查找所有贴子
     @RequestMapping("/findAllPost")
@@ -38,9 +50,15 @@ public class PostController {
 
     //更新贴子
     @RequestMapping("/updatePost")
-    public ResponseEntity<?> updatePost(@RequestBody Post Post){
+    public ResponseEntity<?> updatePost(@RequestBody Post post,@RequestParam("file") MultipartFile file){
         try{
-            int i=postService.updatePost(Post);
+            if (!file.isEmpty()) {
+                String fileName = file.getOriginalFilename();
+                String filePath = "D:/ideawork/Plane/src/main/webapp/img/" + fileName;
+                file.transferTo(new File(filePath));
+                post.setImage_path("src/img/post/"+fileName);
+            }
+            int i=postService.updatePost(post);
             return ResponseEntity.ok(i);
         }catch (Exception exception){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -56,9 +74,15 @@ public class PostController {
 
     //添加贴子
     @RequestMapping("addPost")
-    public ResponseEntity<?> addPost(@RequestBody Post Post){
+    public ResponseEntity<?> addPost(@RequestBody Post post,@RequestParam("file") MultipartFile file){
         try{
-            int i=postService.insertPost(Post);
+            if (!file.isEmpty()) {
+                String fileName = file.getOriginalFilename();
+                String filePath = "D:/ideawork/Plane/src/main/webapp/img/" + fileName;
+                file.transferTo(new File(filePath));
+                post.setImage_path("src/img/post/"+fileName);
+            }
+            int i=postService.insertPost(post);
             return ResponseEntity.ok(i);
         }catch (Exception exception){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

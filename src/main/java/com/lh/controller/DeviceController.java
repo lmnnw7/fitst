@@ -19,6 +19,16 @@ public class DeviceController {
     @Autowired(required = false)
     private DeviceService deviceService;
 
+
+    @RequestMapping("/findDeviceByID")
+    public ResponseEntity<?> findDeviceByID(@RequestParam Integer id){
+        Device device=deviceService.findDeviceByID(id);
+        if(device!=null){
+            return ResponseEntity.ok(device);
+        }
+        else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+
     //查找所有设备
     @RequestMapping("/findAllDevice")
     public ResponseEntity<?> findAllDevice() {

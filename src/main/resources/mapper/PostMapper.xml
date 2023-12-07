@@ -14,6 +14,7 @@
             <result property="password" column="password"></result>
             <result property="email" column="email"></result>
             <result property="role" column="role"></result>
+            <result property="address" column="address"></result>
         </association>
     </resultMap>
     <insert id="insertPost" parameterType="com.lh.pojo.Post">
@@ -35,7 +36,8 @@
         set
             title = #{title},
             content = #{content},
-            create_date = #{create_date}
+            create_date = #{create_date},
+            image_path = #{image_path}
         where
             id = #{id}
     </update>

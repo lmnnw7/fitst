@@ -11,4 +11,5 @@ public class Post {
     private String title;
     private String content;
     private Date create_date;
+    private String image_path;
 }

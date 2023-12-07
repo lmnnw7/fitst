@@ -18,8 +18,8 @@
         where username=#{username}
     </select>
     <insert id="insertUser" parameterType="com.lh.pojo.User">
-        insert into t_user(username,password,email,role)
-        values(#{username},#{password},#{email},#{role})
+        insert into t_user(username,password,email,role,address)
+        values(#{username},#{password},#{email},#{role},#{address})
     </insert>
     <select id="findAllUsers" resultType="com.lh.pojo.User">
         select *
@@ -35,7 +35,8 @@
         set
             username = #{username},
             password = #{password},
-            email = #{email}
+            email = #{email},
+            address = #{address}
         where
             id = #{id}
     </update>
