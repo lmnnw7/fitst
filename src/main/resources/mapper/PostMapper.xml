@@ -7,6 +7,7 @@
         <id property="id" column="id"></id>
         <result property="title" column="title"></result>
         <result property="content" column="content"></result>
+        <result property="image_path" column="image_path"></result>
         <result property="create_date" column="create_date"></result>
         <association property="user_id" javaType="com.lh.pojo.User">
             <id property="id" column="user_id"></id>

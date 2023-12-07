@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lh.mapper.FavoriteMapper">
+    <resultMap id="findAllFavoriteResult" type="com.lh.pojo.Favorite">
+        <id property="id" column="id"></id>
+        <association property="user_id" javaType="com.lh.pojo.User">
+            <id property="id" column="user_id"></id>
+            <result property="username" column="username"></result>
+            <result property="password" column="password"></result>
+            <result property="email" column="email"></result>
+            <result property="role" column="role"></result>
+            <result property="address" column="address"></result>
+        </association>
+        <association property="device_id" javaType="com.lh.pojo.Device">
+            <id property="id" column="device_id"></id>
+            <result property="name" column="name"></result>
+            <result property="create_date" column="create_date"></result>
+            <result property="image_path" column="image_path"></result>
+            <result property="available" column="available"></result>
+            <result property="location" column="location"></result>
+            <result property="description" column="description"></result>
+            <result property="price" column="price"></result>
+         </association>
+    </resultMap>
+    <insert id="insertFavorite" parameterType="com.lh.pojo.Favorite">
+        insert into t_favorite(user_id,device_id)
+        values(#{user_id.id},#{device_id.id})
+    </insert>
+    <select id="findFavoriteByUID" parameterType="integer" resultMap="findAllFavoriteResult">
+        select *
+        from t_favorite f,t_user u,t_device d
+        where f.device_id=d.id and f.user_id=u.id and f.user_id=#{id}
+    </select>
+    <select id="findFavoriteByDID" parameterType="integer" resultMap="findAllFavoriteResult">
+        select *
+        from t_favorite f,t_user u,t_device d
+        where f.device_id=d.id and f.user_id=u.id and f.device_id=#{id}
+    </select>
+</mapper>
