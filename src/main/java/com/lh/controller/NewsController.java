@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.util.List;
 
-@RequestMapping("/api")
+@RequestMapping("/api/news")
 @RestController
 public class NewsController {
 

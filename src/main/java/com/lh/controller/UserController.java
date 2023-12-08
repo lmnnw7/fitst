@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.async.DeferredResult;
@@ -14,7 +13,7 @@ import org.springframework.web.context.request.async.DeferredResult;
 import java.util.List;
 
 
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 @RestController
 public class UserController {
     @Autowired(required = false)
@@ -105,7 +104,7 @@ public class UserController {
 
     //查询用户，模糊查询
     @RequestMapping("/findUserByStr")
-    public ResponseEntity<?> findUserByStr(@RequestParam(value="searchStr") String searchStr,Model model){
+    public ResponseEntity<?> findUserByStr(@RequestParam(value="searchStr") String searchStr){
         List<User> userList=userService.findUserByStr(searchStr);
         return ResponseEntity.ok(userList);
     }
