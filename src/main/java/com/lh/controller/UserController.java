@@ -19,6 +19,7 @@ public class UserController {
     @Autowired(required = false)
     private UserService userService;
 
+    //？？
     @GetMapping("/me")
     public ResponseEntity<?> getCurrentUser(@AuthenticationPrincipal User user) {
         if (user != null) {

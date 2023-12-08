@@ -19,6 +19,7 @@ public class OrderController {
     @Autowired(required = false)
     private OrderService orderService;
 
+    //通过ID查找订单
     @RequestMapping("/findOrderByID")
     public ResponseEntity<?> findNewsByID(@RequestParam Integer id){
         Order order=orderService.findOrderByID(id);
@@ -67,7 +68,7 @@ public class OrderController {
     public ResponseEntity<?> addOrder(@RequestBody Order order) {
         if (order!=null){
             int i=orderService.insertOrder(order);
-            int j=orderService.updateAvailable(order.getDevice_id().id);
+            int j=orderService.updateAvailableTo0(order.getDevice_id().id);
             return ResponseEntity.ok(i+j);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

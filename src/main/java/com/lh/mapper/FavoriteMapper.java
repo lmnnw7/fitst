@@ -5,7 +5,7 @@ import com.lh.pojo.Favorite;
 import java.util.List;
 
 public interface FavoriteMapper {
-    int insertFavorite(Favorite favorite);
-    List<Favorite> findFavoriteByUID(Integer user_id);
-    List<Favorite> findFavoriteByDID(Integer device_id);
+    int insertFavorite(Favorite favorite);//添加收藏
+    List<Favorite> findFavoriteByUID(Integer user_id);//通过用户ID查找收藏
+    List<Favorite> findFavoriteByDID(Integer device_id);//通过设备ID查找收藏
 }

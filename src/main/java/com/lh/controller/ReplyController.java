@@ -30,6 +30,7 @@ public class ReplyController {
         else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
+    //通过ID查找回复
     @RequestMapping("/findReplyByID")
     public ResponseEntity<?> findNewsByID(@RequestParam Integer id){
         Reply reply=replyService.findReplyByID(id);
