@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lh.mapper.OrderMapper">
+    <resultMap id="findAllOrderResult" type="com.lh.pojo.Order">
+        <id property="id" column="id"></id>
+        <result property="address" column="address"></result>
+        <result property="order_date" column="order_date"></result>
+        <result property="status" column="status"></result>
+        <association property="buyer_id" resultMap="UserResultMap"></association>
+        <association property="device_id" resultMap="DeviceResultMap"></association>
+    </resultMap>
+    <resultMap id="DeviceResultMap" type="com.lh.pojo.Device">
+        <id property="id" column="device_id"></id>
+        <result property="name" column="name"></result>
+        <result property="create_date" column="create_date"></result>
+        <result property="image_path" column="image_path"></result>
+        <result property="available" column="available"></result>
+        <result property="location" column="location"></result>
+        <result property="description" column="description"></result>
+        <result property="price" column="price"></result>
+        <association property="user_id" resultMap="UserResultMap"></association>
+    </resultMap>
+    <resultMap id="UserResultMap" type="com.lh.pojo.User">
+        <id property="id" column="user_id" />
+        <result property="username" column="username" />
+        <result property="password" column="password" />
+        <result property="email" column="email" />
+        <result property="role" column="role" />
+        <result property="address" column="address" />
+    </resultMap>
+    <insert id="insertOrder" parameterType="com.lh.pojo.Order">
+        insert into t_order(buyer_id,device_id,address,status,order_date)
+        values(#{buyer_id.id},#{device_id.id},#{address},#{status},#{order_date})
+    </insert>
+    <select id="findAllOrder" resultMap="findAllOrderResult">
+        select *
+        from t_order o,t_user u,t_device d
+        where o.device_id=d.id and o.buyer_id=u.id
+    </select>
+    <select id="findSeller" resultMap="findAllOrderResult">
+        select *
+        from t_order o,t_user u,t_device d
+        where o.device_id=d.id and d.user_id=u.id
+    </select>
+    <select id="findOrderByID" parameterType="integer" resultMap="findAllOrderResult">
+        select *
+        from t_order o,t_user u,t_device d
+        where o.device_id=d.id and o.buyer_id=u.id and o.id=#{id}
+    </select>
+    <update id="updateOrder" parameterType="com.lh.pojo.Order">
+        update t_order
+        set
+            address = #{address},
+            order_date = #{order_date},
+            status = #{status}
+        where
+            id = #{id}
+    </update>
+    <delete id="deleteOrderByID" parameterType="integer">
+        delete
+        from t_order
+        where id=#{id}
+    </delete>
+    <select id="findOrderByStr" parameterType="java.lang.String" resultMap="findAllOrderResult">
+        select *
+        from t_order o,t_user u,t_device d
+        where o.device_id=d.id and o.buyer_id=u.id
+        <if test="searchStr!=null and searchStr!=''">
+            and (address like CONCAT('%',#{searchParam},'%')
+            or status like CONCAT('%',#{searchParam},'%'))
+        </if>
+    </select>
+</mapper>

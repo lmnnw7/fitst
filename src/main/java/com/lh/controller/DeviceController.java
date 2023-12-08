@@ -49,7 +49,7 @@ public class DeviceController {
         try{
             if (!file.isEmpty()) {
                 String fileName = file.getOriginalFilename();
-                String filePath = "D:/ideawork/Plane/src/main/webapp/img/" + fileName;
+                String filePath = "D:/ideawork/FJYL/src/main/webapp/img/" + fileName;
                 file.transferTo(new File(filePath));
                 device.setImage_path("src/img/device/"+fileName);
             }

@@ -20,7 +20,16 @@ public class ReplyController {
     @Autowired(required = false)
     private ReplyService replyService;
 
-    //通过ID查找回复
+    //通过PID查找回复
+    @RequestMapping("/findReplyByPID")
+    public ResponseEntity<?> findReplyByPID(@RequestParam Integer id){
+        Reply reply=replyService.findReplyByPID(id);
+        if(reply!=null){
+            return ResponseEntity.ok(reply);
+        }
+        else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+
     @RequestMapping("/findReplyByID")
     public ResponseEntity<?> findNewsByID(@RequestParam Integer id){
         Reply reply=replyService.findReplyByID(id);

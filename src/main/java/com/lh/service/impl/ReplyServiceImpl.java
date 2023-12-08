@@ -28,6 +28,11 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
+    public Reply findReplyByPID(Integer id) {
+        return findReplyByPID(id);
+    }
+
+    @Override
     public int deleteReplyByID(Integer id) {
         return replyMapper.deleteReplyByID(id);
     }
