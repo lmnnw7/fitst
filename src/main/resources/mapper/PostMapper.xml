@@ -19,8 +19,8 @@
         </association>
     </resultMap>
     <insert id="insertPost" parameterType="com.lh.pojo.Post">
-        insert into t_post(user_id,title,content,create_date)
-        values(#{id},#{title},#{content},#{create_date})
+        insert into t_post(user_id,title,content,create_date,image_path)
+        values(#{id},#{title},#{content},#{create_date},#{image_path})
     </insert>
     <select id="findAllPost" resultMap="findAllPostResult">
         select *
