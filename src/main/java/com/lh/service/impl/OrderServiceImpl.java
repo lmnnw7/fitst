@@ -46,4 +46,9 @@ public class OrderServiceImpl implements OrderService {
     public int insertOrder(Order order) {
         return orderMapper.insertOrder(order);
     }
+
+    @Override
+    public int updateAvailable(Integer id) {
+        return orderMapper.updateAvailable(id);
+    }
 }

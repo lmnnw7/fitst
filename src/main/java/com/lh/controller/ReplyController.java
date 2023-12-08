@@ -23,9 +23,9 @@ public class ReplyController {
     //通过PID查找回复
     @RequestMapping("/findReplyByPID")
     public ResponseEntity<?> findReplyByPID(@RequestParam Integer id){
-        Reply reply=replyService.findReplyByPID(id);
-        if(reply!=null){
-            return ResponseEntity.ok(reply);
+        List<Reply> replyList=replyService.findReplyByPID(id);
+        if(replyList!=null){
+            return ResponseEntity.ok(replyList);
         }
         else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }

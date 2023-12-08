@@ -34,6 +34,13 @@
         insert into t_order(buyer_id,device_id,address,status,order_date)
         values(#{buyer_id.id},#{device_id.id},#{address},#{status},#{order_date})
     </insert>
+    <update id="updateAvailable" parameterType="integer">
+        update t_device
+        set
+            available = 0
+        where
+            id = #{id}
+    </update>
     <select id="findAllOrder" resultMap="findAllOrderResult">
         select *
         from t_order o,t_user u,t_device d

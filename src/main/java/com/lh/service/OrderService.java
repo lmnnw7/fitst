@@ -12,4 +12,5 @@ public interface OrderService {
     int updateOrder(Order order);
     List<Order> findOrderByStr(String searchStr);
     int insertOrder(Order order);
+    int updateAvailable(Integer id);
 }

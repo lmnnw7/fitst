@@ -67,7 +67,8 @@ public class OrderController {
     public ResponseEntity<?> addOrder(@RequestBody Order order) {
         if (order!=null){
             int i=orderService.insertOrder(order);
-            return ResponseEntity.ok(i);
+            int j=orderService.updateAvailable(order.getDevice_id().id);
+            return ResponseEntity.ok(i+j);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
