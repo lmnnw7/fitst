@@ -45,28 +45,29 @@ public class DeviceController {
 
     //添加设备
     @RequestMapping("/addDevice")
-    public ResponseEntity<?> addDevice(@RequestBody Device device,@RequestParam("file") MultipartFile file){
+    public ResponseEntity<?> addDevice(Device device ,@RequestParam("file") MultipartFile file){
         try{
             if (!file.isEmpty()) {
                 String fileName = file.getOriginalFilename();
-                String filePath = "D:/ideawork/FJYL/src/main/webapp/img/" + fileName;
+                String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
                 file.transferTo(new File(filePath));
                 device.setImage_path("src/img/device/"+fileName);
             }
             int i=deviceService.insertDevice(device);
             return ResponseEntity.ok(i);
         }catch (Exception exception){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            System.out.println("失败");
+            return ResponseEntity.status(HttpStatus.MULTI_STATUS).build();
         }
     }
 
     //更新设备
     @RequestMapping("/updateDevice")
-    public ResponseEntity<?> updateDevice(@RequestBody Device device,@RequestParam("file") MultipartFile file){
+    public ResponseEntity<?> updateDevice(Device device,@RequestParam("file") MultipartFile file){
         try{
             if (!file.isEmpty()) {
                 String fileName = file.getOriginalFilename();
-                String filePath = "D:/ideawork/Plane/src/main/webapp/img/" + fileName;
+                String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
                 file.transferTo(new File(filePath));
                 device.setImage_path("src/img/device/"+fileName);
             }

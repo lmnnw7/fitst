@@ -50,11 +50,11 @@ public class NewsController {
 
     //更新新闻
     @RequestMapping("/updateNews")
-    public ResponseEntity<?> updateNews(@RequestBody News news,@RequestParam("file") MultipartFile file){
+    public ResponseEntity<?> updateNews(News news,@RequestParam("file") MultipartFile file){
         try{
             if (!file.isEmpty()) {
                 String fileName = file.getOriginalFilename();
-                String filePath = "D:/ideawork/Plane/src/main/webapp/img/" + fileName;
+                String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
                 file.transferTo(new File(filePath));
                 news.setImage_path("src/img/news/"+fileName);
             }
@@ -74,11 +74,11 @@ public class NewsController {
 
     //添加新闻
     @RequestMapping("addNews")
-    public ResponseEntity<?> addNews(@RequestBody News news,@RequestParam("file") MultipartFile file){
+    public ResponseEntity<?> addNews(News news,@RequestParam("file") MultipartFile file){
         try{
             if (!file.isEmpty()) {
                 String fileName = file.getOriginalFilename();
-                String filePath = "D:/ideawork/Plane/src/main/webapp/img/" + fileName;
+                String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
                 file.transferTo(new File(filePath));
                 news.setImage_path("src/img/news/"+fileName);
             }

@@ -50,11 +50,11 @@ public class PostController {
 
     //更新贴子
     @RequestMapping("/updatePost")
-    public ResponseEntity<?> updatePost(@RequestBody Post post,@RequestParam("file") MultipartFile file){
+    public ResponseEntity<?> updatePost(Post post,@RequestParam("file") MultipartFile file){
         try{
             if (!file.isEmpty()) {
                 String fileName = file.getOriginalFilename();
-                String filePath = "D:/ideawork/Plane/src/main/webapp/img/" + fileName;
+                String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
                 file.transferTo(new File(filePath));
                 post.setImage_path("src/img/post/"+fileName);
             }
@@ -74,11 +74,11 @@ public class PostController {
 
     //添加贴子
     @RequestMapping("addPost")
-    public ResponseEntity<?> addPost(@RequestBody Post post,@RequestParam("file") MultipartFile file){
+    public ResponseEntity<?> addPost(Post post,@RequestParam("file") MultipartFile file){
         try{
             if (!file.isEmpty()) {
                 String fileName = file.getOriginalFilename();
-                String filePath = "D:/ideawork/Plane/src/main/webapp/img/" + fileName;
+                String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
                 file.transferTo(new File(filePath));
                 post.setImage_path("src/img/post/"+fileName);
             }
