@@ -51,12 +51,11 @@ public class DeviceController {
                 String fileName = file.getOriginalFilename();
                 String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
                 file.transferTo(new File(filePath));
-                device.setImage_path("src/img/device/"+fileName);
+                device.setImage_path("../src/img/device/"+fileName);
             }
             int i=deviceService.insertDevice(device);
             return ResponseEntity.ok(i);
         }catch (Exception exception){
-            System.out.println("失败");
             return ResponseEntity.status(HttpStatus.MULTI_STATUS).build();
         }
     }
@@ -69,7 +68,7 @@ public class DeviceController {
                 String fileName = file.getOriginalFilename();
                 String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
                 file.transferTo(new File(filePath));
-                device.setImage_path("src/img/device/"+fileName);
+                device.setImage_path("../src/img/device/"+fileName);
             }
             int i=deviceService.updateDevice(device);
             return ResponseEntity.ok(i);

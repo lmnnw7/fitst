@@ -56,7 +56,7 @@ public class NewsController {
                 String fileName = file.getOriginalFilename();
                 String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
                 file.transferTo(new File(filePath));
-                news.setImage_path("src/img/news/"+fileName);
+                news.setImage_path("../src/img/news/"+fileName);
             }
             int i=newsService.updateNews(news);
             return ResponseEntity.ok(i);
@@ -80,7 +80,7 @@ public class NewsController {
                 String fileName = file.getOriginalFilename();
                 String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
                 file.transferTo(new File(filePath));
-                news.setImage_path("src/img/news/"+fileName);
+                news.setImage_path("../src/img/news/"+fileName);
             }
             int i=newsService.insertNews(news);
             return ResponseEntity.ok(i);

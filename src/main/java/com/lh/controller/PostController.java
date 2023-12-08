@@ -56,7 +56,7 @@ public class PostController {
                 String fileName = file.getOriginalFilename();
                 String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
                 file.transferTo(new File(filePath));
-                post.setImage_path("src/img/post/"+fileName);
+                post.setImage_path("../src/img/post/"+fileName);
             }
             int i=postService.updatePost(post);
             return ResponseEntity.ok(i);
@@ -80,7 +80,7 @@ public class PostController {
                 String fileName = file.getOriginalFilename();
                 String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
                 file.transferTo(new File(filePath));
-                post.setImage_path("src/img/post/"+fileName);
+                post.setImage_path("../src/img/post/"+fileName);
             }
             int i=postService.insertPost(post);
             return ResponseEntity.ok(i);
