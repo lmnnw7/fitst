@@ -36,6 +36,13 @@ public class DeviceController {
         return ResponseEntity.ok(Dlist);
     }
 
+    //查找可用设备
+    @RequestMapping("/findAvailableDevice")
+    public ResponseEntity<?> findAvailableDevice() {
+        List<Device> Dlist=deviceService.findAvailableDevice();
+        return ResponseEntity.ok(Dlist);
+    }
+
     //通过用户ID查找设备
     @RequestMapping("/findDeviceByUID")
     public ResponseEntity<?> findDeviceByUID(@RequestParam Integer id) {

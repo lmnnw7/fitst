@@ -18,8 +18,13 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
 
     @Override
-    public List<Order> findAllOrder() {
-        return orderMapper.findAllOrder();
+    public List<Order> findBuyer() {
+        return orderMapper.findBuyer();
+    }
+
+    @Override
+    public List<Order> findSeller() {
+        return orderMapper.findSeller();
     }
 
     @Override
@@ -50,5 +55,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public int updateAvailableTo0(Integer id) {
         return orderMapper.updateAvailableTo0(id);
+    }
+
+    @Override
+    public int confirmOrder(Integer id) {
+        return orderMapper.confirmOrder(id);
     }
 }

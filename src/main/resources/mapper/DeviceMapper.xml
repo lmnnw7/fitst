@@ -27,6 +27,11 @@
         where d.user_id = u.id
 
     </select>
+    <select id="findAvailableDevice" resultMap="findAllDeviceResult">
+        select *
+        from t_device d,t_user u
+        where d.user_id = u.id and d.available=1
+    </select>
     <select id="findDeviceByID" resultMap="findAllDeviceResult">
         select *
         from t_device d,t_user u

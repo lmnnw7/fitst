@@ -30,4 +30,9 @@ public class FavoriteServiceImpl implements FavoriteService {
     public List<Favorite> findFavoriteByDID(Integer device_id) {
         return favoriteMapper.findFavoriteByDID(device_id);
     }
+
+    @Override
+    public int deleteFavoriteByID(Integer id) {
+        return favoriteMapper.deleteFavoriteByID(id);
+    }
 }

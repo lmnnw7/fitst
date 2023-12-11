@@ -12,4 +12,5 @@ public interface DeviceMapper {
     List<Device> findDeviceByStr(String searchStr);//模糊查询设备
     List<Device> findAllDevice();//查找所有设备
     int insertDevice(Device device);//添加设备
+    List<Device> findAvailableDevice();//查找可用设备
 }

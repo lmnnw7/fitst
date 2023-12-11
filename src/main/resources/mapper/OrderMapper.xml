@@ -41,7 +41,7 @@
         where
             id = #{id}
     </update>
-    <select id="findAllOrder" resultMap="findAllOrderResult">
+    <select id="findBuyer" resultMap="findAllOrderResult">
         select *
         from t_order o,t_user u,t_device d
         where o.device_id=d.id and o.buyer_id=u.id
@@ -51,6 +51,13 @@
         from t_order o,t_user u,t_device d
         where o.device_id=d.id and d.user_id=u.id
     </select>
+    <update id="confirmOrder" parameterType="com.lh.pojo.Order">
+        update t_order
+        set
+            status = '订单已完成'
+        where
+            id = #{id}
+    </update>
     <select id="findOrderByID" parameterType="integer" resultMap="findAllOrderResult">
         select *
         from t_order o,t_user u,t_device d

@@ -38,4 +38,9 @@
         from t_favorite f,t_user u,t_device d
         where f.device_id=d.id and f.user_id=u.id and f.device_id=#{id}
     </select>
+    <delete id="deleteFavoriteByID" parameterType="integer">
+        delete
+        from t_favorite
+        where id=#{id}
+    </delete>
 </mapper>

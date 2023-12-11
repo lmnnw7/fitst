@@ -29,11 +29,28 @@ public class OrderController {
         else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
-    //查找所有订单
-    @RequestMapping("/findAllOrder")
-    public ResponseEntity<?> findAllOrder(){
-        List<Order> OrderList=orderService.findAllOrder();
+    //查找买家订单
+    @RequestMapping("/findBuyer")
+    public ResponseEntity<?> findBuyer(){
+        List<Order> OrderList=orderService.findBuyer();
         return ResponseEntity.ok(OrderList);
+    }
+
+    //查找卖家订单
+    @RequestMapping("/findSeller")
+    public ResponseEntity<?> findSeller(){
+        List<Order> OrderList=orderService.findSeller();
+        return ResponseEntity.ok(OrderList);
+    }
+
+    //确认订单
+    @RequestMapping("/confirmOrder")
+    public ResponseEntity<?> confirmOrder(@RequestParam Integer id){
+        int i=orderService.confirmOrder(id);
+        if(i>0){
+            return ResponseEntity.ok(i);
+        }
+        else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
     //根据ID删除订单

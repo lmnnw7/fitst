@@ -40,4 +40,15 @@ public class FavoriteController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
+
+    //根据ID删除收藏
+    @RequestMapping("/deleteFavoriteByID")
+    public ResponseEntity<?> deleteFavoriteByID(@RequestParam Integer id){
+        int i=favoriteService.deleteFavoriteByID(id);
+        if(i>0){
+            return ResponseEntity.ok(i);
+        }
+        else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+
 }

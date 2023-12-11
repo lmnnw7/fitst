@@ -11,5 +11,6 @@ public interface DeviceService {
     int updateDevice(Device device);//编辑设备
     List<Device> findDeviceByStr(String searchStr);//模糊查询设备
     List<Device> findAllDevice();//查找所有设备
+    List<Device> findAvailableDevice();//查找可用设备
     int insertDevice(Device device);//添加设备
 }

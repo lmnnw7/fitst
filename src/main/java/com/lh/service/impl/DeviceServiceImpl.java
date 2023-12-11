@@ -48,6 +48,11 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
+    public List<Device> findAvailableDevice() {
+        return deviceMapper.findAvailableDevice();
+    }
+
+    @Override
     public int insertDevice(Device device) {
         return deviceMapper.insertDevice(device);
     }
