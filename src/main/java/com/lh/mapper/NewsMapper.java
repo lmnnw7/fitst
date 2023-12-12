@@ -5,7 +5,7 @@ import com.lh.pojo.News;
 import java.util.List;
 
 public interface NewsMapper {
-    public News findNewsByID(Integer id);//通过ID查找新闻
+    News findNewsByID(Integer id);//通过ID查找新闻
     int deleteNewsByID(Integer id);//通过ID删除新闻
     int updateNews(News news);//编辑新闻
     List<News> findNewsByStr(String searchStr);//模糊查询新闻

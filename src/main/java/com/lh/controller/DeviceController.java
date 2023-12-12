@@ -45,8 +45,8 @@ public class DeviceController {
 
     //通过用户ID查找设备
     @RequestMapping("/findDeviceByUID")
-    public ResponseEntity<?> findDeviceByUID(@RequestParam Integer id) {
-        List<Device> deviceList=deviceService.findDeviceByUID(id);
+    public ResponseEntity<?> findDeviceByUID(@RequestParam Integer user_id) {
+        List<Device> deviceList=deviceService.findDeviceByUID(user_id);
         return ResponseEntity.ok(deviceList);
     }
 

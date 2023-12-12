@@ -5,8 +5,8 @@ import com.lh.pojo.Device;
 import java.util.List;
 
 public interface DeviceMapper {
-    public Device findDeviceByID(Integer id);//通过ID查找设备
-    public List<Device> findDeviceByUID(Integer id);//通过用户ID查找设备
+    Device findDeviceByID(Integer id);//通过ID查找设备
+    List<Device> findDeviceByUID(Integer id);//通过用户ID查找设备
     int deleteDeviceByID(Integer id);//通过ID删除设备
     int updateDevice(Device device);//编辑设备
     List<Device> findDeviceByStr(String searchStr);//模糊查询设备

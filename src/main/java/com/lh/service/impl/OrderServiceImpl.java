@@ -18,13 +18,13 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
 
     @Override
-    public List<Order> findBuyer() {
-        return orderMapper.findBuyer();
+    public List<Order> findBuyer(Integer id) {
+        return orderMapper.findBuyer(id);
     }
 
     @Override
-    public List<Order> findSeller() {
-        return orderMapper.findSeller();
+    public List<Order> findSeller(Integer id) {
+        return orderMapper.findSeller(id);
     }
 
     @Override

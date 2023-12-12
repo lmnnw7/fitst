@@ -41,15 +41,15 @@
         where
             id = #{id}
     </update>
-    <select id="findBuyer" resultMap="findAllOrderResult">
+    <select id="findBuyer" parameterType="integer" resultMap="findAllOrderResult">
         select *
         from t_order o,t_user u,t_device d
-        where o.device_id=d.id and o.buyer_id=u.id
+        where o.device_id=d.id and o.buyer_id=u.id and u.id=#{id}
     </select>
     <select id="findSeller" resultMap="findAllOrderResult">
         select *
         from t_order o,t_user u,t_device d
-        where o.device_id=d.id and d.user_id=u.id
+        where o.device_id=d.id and d.user_id=u.id and u.id=#{id}
     </select>
     <update id="confirmOrder" parameterType="com.lh.pojo.Order">
         update t_order

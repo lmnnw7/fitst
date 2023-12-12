@@ -31,15 +31,15 @@ public class OrderController {
 
     //查找买家订单
     @RequestMapping("/findBuyer")
-    public ResponseEntity<?> findBuyer(){
-        List<Order> OrderList=orderService.findBuyer();
+    public ResponseEntity<?> findBuyer(@RequestParam Integer id){
+        List<Order> OrderList=orderService.findBuyer(id);
         return ResponseEntity.ok(OrderList);
     }
 
     //查找卖家订单
     @RequestMapping("/findSeller")
-    public ResponseEntity<?> findSeller(){
-        List<Order> OrderList=orderService.findSeller();
+    public ResponseEntity<?> findSeller(@RequestParam Integer id){
+        List<Order> OrderList=orderService.findSeller(id);
         return ResponseEntity.ok(OrderList);
     }
 
