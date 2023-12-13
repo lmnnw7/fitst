@@ -34,13 +34,6 @@
         insert into t_order(buyer_id,device_id,address,status,order_date)
         values(#{buyer_id.id},#{device_id.id},#{address},#{status},#{order_date})
     </insert>
-    <update id="updateAvailableTo0" parameterType="integer">
-        update t_device
-        set
-            available = 0
-        where
-            id = #{id}
-    </update>
     <select id="findBuyer" parameterType="integer" resultMap="findAllOrderResult">
         select *
         from t_order o,t_user u,t_device d
@@ -54,7 +47,7 @@
     <update id="confirmOrder" parameterType="com.lh.pojo.Order">
         update t_order
         set
-            status = '订单已完成'
+            status = '已售出'
         where
             id = #{id}
     </update>

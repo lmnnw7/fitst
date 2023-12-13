@@ -13,4 +13,7 @@ public interface DeviceService {
     List<Device> findAllDevice();//查找所有设备
     List<Device> findAvailableDevice();//查找可用设备
     int insertDevice(Device device);//添加设备
+    int updateAvailableTo0(Integer id);//更改可用性为已售出
+    int updateAvailableTo1(Integer id);//更改可用性为上架
+    int updateAvailableTo2(Integer id);//更改可用性为下架
 }

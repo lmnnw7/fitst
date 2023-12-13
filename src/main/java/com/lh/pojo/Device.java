@@ -11,7 +11,7 @@ public class Device {
     private String description;
     private Double price;
     private String location;
-    private Integer available;
+    private String available;
     private Date create_date;
     private String image_path;
     private User user_id;

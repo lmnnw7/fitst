@@ -101,6 +101,24 @@ public class DeviceController {
         return ResponseEntity.ok(deviceList);
     }
 
+    //上架设备
+    @RequestMapping("/PutOnDevice")
+    public ResponseEntity<?> PutOnDevice(@RequestParam Integer id){
+        int i=deviceService.updateAvailableTo1(id);
+        if(i>0){
+            return ResponseEntity.ok(i);
+        }
+        else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
 
+    //下架设备
+    @RequestMapping("/PullOffDevice")
+    public ResponseEntity<?> PullOffDevice(@RequestParam Integer id){
+        int i=deviceService.updateAvailableTo2(id);
+        if(i>0){
+            return ResponseEntity.ok(i);
+        }
+        else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
 
 }

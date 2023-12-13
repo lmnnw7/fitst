@@ -1,6 +1,7 @@
 package com.lh.controller;
 
 import com.lh.pojo.Order;
+import com.lh.service.DeviceService;
 import com.lh.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,8 @@ public class OrderController {
 
     @Autowired(required = false)
     private OrderService orderService;
+    @Autowired(required = false)
+    private DeviceService deviceService;
 
     //通过ID查找订单
     @RequestMapping("/findOrderByID")
@@ -53,12 +56,14 @@ public class OrderController {
         else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
-    //根据ID删除订单
+    //根据ID删除订单并把设备可用性改为上架
     @RequestMapping("/deleteOrderByID")
     public ResponseEntity<?> deleteOrderByID(@RequestParam Integer id){
+        Order order=orderService.findOrderByID(id);
         int i=orderService.deleteOrderByID(id);
+        int j=deviceService.updateAvailableTo1(order.getDevice_id().id);
         if(i>0){
-            return ResponseEntity.ok(i);
+            return ResponseEntity.ok(i+j);
         }
         else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
@@ -80,12 +85,12 @@ public class OrderController {
         return ResponseEntity.ok(OrderList);
     }
 
-    //添加订单
+    //添加订单并把设备可用性改为已售出
     @RequestMapping("/addOrder")
     public ResponseEntity<?> addOrder(@RequestBody Order order) {
         if (order!=null){
             int i=orderService.insertOrder(order);
-            int j=orderService.updateAvailableTo0(order.getDevice_id().id);
+            int j=deviceService.updateAvailableTo0(order.getDevice_id().id);
             return ResponseEntity.ok(i+j);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

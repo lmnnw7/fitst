@@ -56,4 +56,19 @@ public class DeviceServiceImpl implements DeviceService {
     public int insertDevice(Device device) {
         return deviceMapper.insertDevice(device);
     }
+
+    @Override
+    public int updateAvailableTo0(Integer id) {
+        return deviceMapper.updateAvailableTo0(id);
+    }
+
+    @Override
+    public int updateAvailableTo1(Integer id) {
+        return deviceMapper.updateAvailableTo1(id);
+    }
+
+    @Override
+    public int updateAvailableTo2(Integer id) {
+        return deviceMapper.updateAvailableTo2(id);
+    }
 }

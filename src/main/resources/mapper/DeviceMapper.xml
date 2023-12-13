@@ -30,7 +30,7 @@
     <select id="findAvailableDevice" resultMap="findAllDeviceResult">
         select *
         from t_device d,t_user u
-        where d.user_id = u.id and d.available=1
+        where d.user_id = u.id and d.available='上架'
     </select>
     <select id="findDeviceByID" resultMap="findAllDeviceResult">
         select *
@@ -73,4 +73,25 @@
             or price like CONCAT('%',#{searchParam},'%')
         </if>
     </select>
+    <update id="updateAvailableTo0" parameterType="integer">
+        update t_device
+        set
+            available = '已售出'
+        where
+            id = #{id}
+    </update>
+    <update id="updateAvailableTo1" parameterType="integer">
+        update t_device
+        set
+            available = '上架'
+        where
+            id = #{id}
+    </update>
+    <update id="updateAvailableTo2" parameterType="integer">
+        update t_device
+        set
+            available = '下架'
+        where
+            id = #{id}
+    </update>
 </mapper>
