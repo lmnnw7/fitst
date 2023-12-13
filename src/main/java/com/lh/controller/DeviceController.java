@@ -43,18 +43,25 @@ public class DeviceController {
         return ResponseEntity.ok(Dlist);
     }
 
-    //通过用户ID查找设备
-    @RequestMapping("/findDeviceByUID")
-    public ResponseEntity<?> findDeviceByUID(@RequestParam Integer user_id) {
-        List<Device> deviceList=deviceService.findDeviceByUID(user_id);
+    //通过用户ID查找用户未售出设备
+    @RequestMapping("/findUserAbleDevice")
+    public ResponseEntity<?> findUserAbleDevice(@RequestParam Integer user_id) {
+        List<Device> deviceList=deviceService.findUserAbleDevice(user_id);
+        return ResponseEntity.ok(deviceList);
+    }
+
+    //通过用户ID查找用户已售出设备
+    @RequestMapping("/findUserUnableDevice")
+    public ResponseEntity<?> findUserUnableDevice(@RequestParam Integer user_id) {
+        List<Device> deviceList=deviceService.findUserUnableDevice(user_id);
         return ResponseEntity.ok(deviceList);
     }
 
     //添加设备
     @RequestMapping("/addDevice")
-    public ResponseEntity<?> addDevice(Device device ,@RequestParam("file") MultipartFile file){
+    public ResponseEntity<?> addDevice(Device device ,@RequestParam( name="file",required = false) MultipartFile file){
         try{
-            if (!file.isEmpty()) {
+            if (file!=null &&!file.isEmpty()) {
                 String fileName = file.getOriginalFilename();
                 String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
                 file.transferTo(new File(filePath));
@@ -69,9 +76,9 @@ public class DeviceController {
 
     //更新设备
     @RequestMapping("/updateDevice")
-    public ResponseEntity<?> updateDevice(Device device,@RequestParam("file") MultipartFile file){
+    public ResponseEntity<?> updateDevice(Device device,@RequestParam( name="file",required = false) MultipartFile file){
         try{
-            if (!file.isEmpty()) {
+            if (file!=null &&!file.isEmpty()) {
                 String fileName = file.getOriginalFilename();
                 String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
                 file.transferTo(new File(filePath));

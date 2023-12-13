@@ -23,8 +23,13 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public List<Device> findDeviceByUID(Integer id) {
-        return deviceMapper.findDeviceByUID(id);
+    public List<Device> findUserAbleDevice(Integer id) {
+        return deviceMapper.findUserAbleDevice(id);
+    }
+
+    @Override
+    public List<Device> findUserUnableDevice(Integer id) {
+        return deviceMapper.findUserUnableDevice(id);
     }
 
     @Override

@@ -33,7 +33,7 @@ public class FavoriteController {
     //进行收藏
     @RequestMapping("/addFavorite")
     public ResponseEntity<?> addFavorite(@RequestBody Favorite favorite) {
-        if (favorite!=null){
+        if (favoriteService.findFavorite(favorite)==null){
             int i=favoriteService.insertFavorite(favorite);
             return ResponseEntity.ok(i);
         } else {
@@ -41,10 +41,10 @@ public class FavoriteController {
         }
     }
 
-    //根据ID删除收藏
-    @RequestMapping("/deleteFavoriteByID")
-    public ResponseEntity<?> deleteFavoriteByID(@RequestParam Integer id){
-        int i=favoriteService.deleteFavoriteByID(id);
+    //删除收藏
+    @RequestMapping("/deleteFavorite")
+    public ResponseEntity<?> deleteFavorite(@RequestBody Favorite favorite){
+        int i=favoriteService.deleteFavorite(favorite);
         if(i>0){
             return ResponseEntity.ok(i);
         }

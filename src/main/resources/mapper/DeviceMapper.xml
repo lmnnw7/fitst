@@ -41,10 +41,15 @@
         insert into t_device(user_id,name,price,description,location,image_path,available,create_date)
         values(#{id},#{name},#{price},#{description},#{location},#{image_path},#{available},#{create_date})
     </insert>
-    <select id="findDeviceByUID" resultMap="findAllDeviceResult">
+    <select id="findUserAbleDevice" resultMap="findAllDeviceResult">
         select *
         from t_device d,t_user u
-        where d.user_id = u.id and u.id=#{id}
+        where d.user_id = u.id and u.id=#{id} and d.available != '已售出'
+    </select>
+    <select id="findUserUnableDevice" resultMap="findAllDeviceResult">
+        select *
+        from t_device d,t_user u
+        where d.user_id = u.id and u.id=#{id} and d.available = '已售出'
     </select>
     <delete id="deleteDeviceByID" parameterType="integer">
         delete

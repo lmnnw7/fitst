@@ -5,7 +5,6 @@ import com.lh.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,9 +49,9 @@ public class PostController {
 
     //更新贴子
     @RequestMapping("/updatePost")
-    public ResponseEntity<?> updatePost(Post post,@RequestParam("file") MultipartFile file){
+    public ResponseEntity<?> updatePost(Post post,@RequestParam( name="file",required = false)  MultipartFile file){
         try{
-            if (!file.isEmpty()) {
+            if (file!=null &&!file.isEmpty()) {
                 String fileName = file.getOriginalFilename();
                 String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
                 file.transferTo(new File(filePath));
@@ -74,9 +73,9 @@ public class PostController {
 
     //添加贴子
     @RequestMapping("addPost")
-    public ResponseEntity<?> addPost(Post post,@RequestParam("file") MultipartFile file){
+    public ResponseEntity<?> addPost(Post post,@RequestParam( name="file",required = false)  MultipartFile file){
         try{
-            if (!file.isEmpty()) {
+            if (file!=null &&!file.isEmpty()) {
                 String fileName = file.getOriginalFilename();
                 String filePath = "D:/ideawork/FJYL/src/main/resources/static/img/" + fileName;
                 file.transferTo(new File(filePath));

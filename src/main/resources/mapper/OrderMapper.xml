@@ -47,7 +47,7 @@
     <update id="confirmOrder" parameterType="com.lh.pojo.Order">
         update t_order
         set
-            status = '已售出'
+            status = '已发货'
         where
             id = #{id}
     </update>

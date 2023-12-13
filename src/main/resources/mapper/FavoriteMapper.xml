@@ -4,7 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.mapper.FavoriteMapper">
     <resultMap id="findAllFavoriteResult" type="com.lh.pojo.Favorite">
-        <id property="id" column="id"></id>
         <association property="user_id" javaType="com.lh.pojo.User">
             <id property="id" column="user_id"></id>
             <result property="username" column="username"></result>
@@ -31,16 +30,21 @@
     <select id="findFavoriteByUID" parameterType="integer" resultMap="findAllFavoriteResult">
         select *
         from t_favorite f,t_user u,t_device d
-        where f.device_id=d.id and f.user_id=u.id and f.user_id=#{id}
+        where f.device_id=d.id and f.user_id=u.id and f.user_id=#{id} and d.available!='已售出'
     </select>
     <select id="findFavoriteByDID" parameterType="integer" resultMap="findAllFavoriteResult">
         select *
         from t_favorite f,t_user u,t_device d
         where f.device_id=d.id and f.user_id=u.id and f.device_id=#{id}
     </select>
-    <delete id="deleteFavoriteByID" parameterType="integer">
+    <select id="findFavorite" parameterType="com.lh.pojo.Favorite" resultType="com.lh.pojo.Favorite">
+        select *
+        from t_favorite
+        where device_id=#{device_id.id} and user_id=#{user_id.id}
+    </select>
+    <delete id="deleteFavorite" parameterType="com.lh.pojo.Favorite">
         delete
         from t_favorite
-        where id=#{id}
+        where user_id=#{user_id.id} and device_id=#{device_id.id}
     </delete>
 </mapper>

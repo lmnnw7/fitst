@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface DeviceService {
     Device findDeviceByID(Integer id);//通过ID查找设备
-    List<Device> findDeviceByUID(Integer id);//通过用户ID查找设备
+    List<Device> findUserAbleDevice(Integer id);//查找用户未售出设备
+    List<Device> findUserUnableDevice(Integer id);//查找用户售出设备
     int deleteDeviceByID(Integer id);//通过ID删除设备
     int updateDevice(Device device);//编辑设备
     List<Device> findDeviceByStr(String searchStr);//模糊查询设备
