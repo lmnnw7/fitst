@@ -1,3 +1,8 @@
+
+baidu:
+  ai:
+    accessKey: OSbo8juC1eFutkNESPnhtUwk
+    secretKey: SGnE76B8cvUxgtA7GRCBFlqajQmEuGsO
 server:
   port: 8088
 spring:
@@ -10,3 +15,11 @@ mybatis:
   mapper-locations: classpath*:/mapper/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+#  spring.security.oauth2.client.registration.baidu.client-id=<your-client-id>
+#  spring.security.oauth2.client.registration.baidu.client-secret=<your-client-secret>
+#  spring.security.oauth2.client.registration.baidu.authorization-grant-type=authorization_code
+#  spring.security.oauth2.client.registration.baidu.redirect-uri=http://localhost:8080/login/oauth2/code/baidu
+#  spring.security.oauth2.client.provider.baidu.authorization-uri=https://openapi.baidu.com/oauth/2.0/authorize
+#  spring.security.oauth2.client.provider.baidu.token-uri=https://openapi.baidu.com/oauth/2.0/token
