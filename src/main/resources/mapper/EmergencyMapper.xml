@@ -6,5 +6,40 @@
     <select id="findAllEmergency" resultType="com.lh.pojo.Emergency">
         select *
         from t_emergency
- </select>
+    </select>
+    <insert id="insertEmergency" parameterType="com.lh.pojo.Emergency">
+        insert into t_Emergency(name,latitude,longitude,description,phone)
+        values(#{name},#{latitude},#{longitude},#{description},#{phone})
+    </insert>
+    <select id="findEmergencyByID"  parameterType="Integer" resultType="com.lh.pojo.Emergency">
+        select *
+        from t_emergency
+        where id = #{id}
+    </select>
+    <update id="updateEmergency" parameterType="com.lh.pojo.Emergency">
+        update t_emergency
+        set
+            name = #{name},
+            latitude = #{latitude},
+            longitude = #{longitude},
+            description = #{description},
+            phone = #{phone}
+        where
+            id = #{id}
+    </update>
+    <delete id="deleteEmergencyByID" parameterType="integer">
+        delete
+        from t_emergency
+        where id=#{id}
+    </delete>
+    <select id="findEmergencyByStr" parameterType="java.lang.String" resultType="com.lh.pojo.Emergency">
+        select *
+        from t_emergency
+        where 1=1
+        <if test="searchStr!=null and searchStr!=''">
+            and (name like CONCAT('%',#{searchParam},'%')
+            or latitude like CONCAT('%',#{searchParam},'%')
+            or longitude like CONCAT('%',#{searchParam},'%'))
+        </if>
+    </select>
 </mapper>

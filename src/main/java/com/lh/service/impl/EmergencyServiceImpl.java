@@ -21,4 +21,29 @@ public class EmergencyServiceImpl implements EmergencyService {
     public List<Emergency> findAllEmergency() {
         return emergencyMapper.findAllEmergency();
     }
+
+    @Override
+    public Emergency findEmergencyByID(Integer id) {
+        return emergencyMapper.findEmergencyByID(id);
+    }
+
+    @Override
+    public int deleteEmergencyByID(Integer id) {
+        return emergencyMapper.deleteEmergencyByID(id);
+    }
+
+    @Override
+    public int updateEmergency(Emergency emergency) {
+        return emergencyMapper.updateEmergency(emergency);
+    }
+
+    @Override
+    public List<Emergency> findEmergencyByStr(String searchStr) {
+        return emergencyMapper.findEmergencyByStr(searchStr);
+    }
+
+    @Override
+    public int insertEmergency(Emergency emergency) {
+        return emergencyMapper.insertEmergency(emergency);
+    }
 }

@@ -1,10 +1,7 @@
 package com.lh.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -19,7 +16,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public MultipartResolver multipartResolver() {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
         resolver.setDefaultEncoding("UTF-8");
-        resolver.setMaxUploadSizePerFile(5 * 1024 * 1024); // 限制单个文件大小为5MB
+        resolver.setMaxUploadSizePerFile(10 * 1024 * 1024); // 限制单个文件大小为10MB
         return resolver;
     }
 

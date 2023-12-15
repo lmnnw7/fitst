@@ -4,7 +4,7 @@ import lombok.Data;
 
 // ChatRequest.java
 @Data
-public class ChatRequest {
+public class Chat {
     private String role;
     private String content;
 

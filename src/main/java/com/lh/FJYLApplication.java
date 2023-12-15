@@ -24,7 +24,7 @@ public class FJYLApplication {
                 registry.addMapping("/api/**")
                         .allowedMethods("*")
                         .allowedHeaders("*")
-                        .allowedOrigins("http://localhost:5173")
+                        .allowedOriginPatterns("http://localhost:5173")
                         .allowCredentials(true);
             }
         };
