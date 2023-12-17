@@ -34,6 +34,11 @@
         insert into t_order(buyer_id,device_id,address,status,order_date)
         values(#{buyer_id.id},#{device_id.id},#{address},#{status},#{order_date})
     </insert>
+    <select id="findAllOrder" resultMap="findAllOrderResult">
+        select *
+        from t_order o,t_user u,t_device d
+        where o.device_id=d.id and o.buyer_id=u.id
+    </select>
     <select id="findBuyer" parameterType="integer" resultMap="findAllOrderResult">
         select *
         from t_order o,t_user u,t_device d

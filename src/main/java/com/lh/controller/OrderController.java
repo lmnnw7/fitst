@@ -32,6 +32,13 @@ public class OrderController {
         else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
+    //查找所有订单
+    @RequestMapping("/findAllOrder")
+    public ResponseEntity<?> findAllOrder(){
+        List<Order> OrderList=orderService.findAllOrder();
+        return ResponseEntity.ok(OrderList);
+    }
+
     //查找买家订单
     @RequestMapping("/findBuyer")
     public ResponseEntity<?> findBuyer(@RequestParam Integer id){

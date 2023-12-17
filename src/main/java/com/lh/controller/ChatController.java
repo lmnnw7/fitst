@@ -28,6 +28,13 @@ public class ChatController {
         this.baiduAIConfig = Objects.requireNonNull(baiduAIConfig);
     }
 
+    @GetMapping("/clear-history")
+    public ResponseEntity<?> clearHistory() {
+        conversationHistory.clear();
+        System.out.println(1);
+        return ResponseEntity.ok(1);
+    }
+
     @PostMapping("/chat")
     public ResponseEntity<String> chat(@RequestBody Chat chat) {
         try {
@@ -54,6 +61,7 @@ public class ChatController {
             String result = jsonObject.getString("result");
             newReply.put("content", result);
             conversationHistory.add(newReply);
+            System.out.println(conversationHistory);
 
             return ResponseEntity.ok(response.getBody());
         } catch (HttpClientErrorException e) {

@@ -9,6 +9,4 @@ public class AccessTokenResponse {
     private String scope;
     private String refresh_token;
     private String session_secret;
-
-    // getters and setters
 }

@@ -28,6 +28,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> findAllOrder() {
+        return orderMapper.findAllOrder();
+    }
+
+    @Override
     public Order findOrderByID(Integer id) {
         return orderMapper.findOrderByID(id);
     }

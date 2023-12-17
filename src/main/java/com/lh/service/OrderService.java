@@ -7,6 +7,7 @@ import java.util.List;
 public interface OrderService {
     List<Order> findBuyer(Integer id);//查找买家订单
     List<Order> findSeller(Integer id);//查找卖家订单
+    List<Order> findAllOrder();//查找所有订单
     Order findOrderByID(Integer id);//通过ID查找订单
     int deleteOrderByID(Integer id);//通过ID删除订单
     int updateOrder(Order order);//编辑订单

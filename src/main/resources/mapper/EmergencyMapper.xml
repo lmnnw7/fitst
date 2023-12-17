@@ -8,7 +8,7 @@
         from t_emergency
     </select>
     <insert id="insertEmergency" parameterType="com.lh.pojo.Emergency">
-        insert into t_Emergency(name,latitude,longitude,description,phone)
+        insert into t_emergency(name,latitude,longitude,description,phone)
         values(#{name},#{latitude},#{longitude},#{description},#{phone})
     </insert>
     <select id="findEmergencyByID"  parameterType="Integer" resultType="com.lh.pojo.Emergency">
